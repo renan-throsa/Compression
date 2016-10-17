@@ -1,9 +1,10 @@
 class Node:
-    def __init__(self,simbolo):
-        self.__simbolo= ''
+    def __init__(self,simbolo = ''):
+        self.__simbolo = simbolo
         self.__frequencia = 0
         self.__esquerda = None
         self.__direita = None
+
 
     def setChild(self,esquerda,direita):
         self.__esquerda = esquerda

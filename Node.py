@@ -1,9 +1,9 @@
 class Node:
-    def __init__(self, simbolo=''):
+    def __init__(self, simbolo,esquerda = None,direita=None):
         self.__simbolo = simbolo
         self.__frequencia = 0
-        self.__esquerda = None
-        self.__direita = None
+        self.__esquerda = esquerda
+        self.__direita = direita
 
     def setChild(self, esquerda, direita):
         self.__esquerda = esquerda
@@ -39,13 +39,13 @@ class Node:
     def __gt__(self, v):
         return self.getFrequencia() > no.getFrequencia()
 
-    def preencherMapa(self, dicioario, caminho):
+    def preencherMapa(self, dicioario, path):
         """
 
         :type dicioario: map
         """
         if self.ehFolha():
-            dicionario[self.getSimbolo()] = caminho
+            dicionario[self.getSimbolo()] = path
             return
-        self.preencheMapa(dicionario, caminho + '0')
-        self.preencheMapa(dicionario, caminho + '1')
+        self.preencheMapa(dicionario, path + "0" )
+        self.preencheMapa(dicionario, path + "1")

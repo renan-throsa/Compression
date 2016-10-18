@@ -5,10 +5,6 @@ class Node:
         self.__esquerda = esquerda
         self.__direita = direita
 
-    def setChild(self, esquerda, direita):
-        self.__esquerda = esquerda
-        self.__direita = direita
-
     def ehFolha(self):
         return self.__esquerda is None and self.__direita is None
 

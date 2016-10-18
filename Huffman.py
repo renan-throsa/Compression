@@ -19,9 +19,30 @@ class Huffman:
         while(True):
             esquerda   = Queue.pop() #node com menor frequencia
             direita = Queue.pop()
-            pai     = Node.setChild(esquerda,direita)
-            if Queue.empty():
+            pai = Node() #novo nó
+            pai.setChild(esquerda,direita)
+            if len(Queue) is 0:
                 return pai
             else:
                 Queue.append(pai)
                 Queue.sort()
+
+    def criarDicionario(self):
+        dicionario = {}
+        path = ""
+        raiz.preencherMapa(dicionario, path )
+        return dicionario
+
+    def codificarTexto(self,texto):
+        self.__raiz = self.criarArvore(self.contarFrequencias(texto))
+        dicionario = self.criarDicionario()
+
+        data = []
+        for ch in texto:
+            print(dicionario.get(ch))
+            data.append(dicionario.get(ch))
+
+
+    def decodificarTexto(self, data):
+        aux = self.__raiz
+        for ch in 

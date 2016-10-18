@@ -16,11 +16,10 @@ class Huffman:
         return Queue
 
     def criarArvore(self,Queue):
-        while(True):
-            esquerda   = Queue.pop() #node com menor frequencia
+        while (True):
+            esquerda = Queue.pop() #Node com menor frequencia
             direita = Queue.pop()
-            pai = Node() #novo nó
-            pai.setChild(esquerda,direita)
+            pai = Node('Null', esquerda, direita)
             if len(Queue) is 0:
                 return pai
             else:
@@ -40,9 +39,29 @@ class Huffman:
         data = []
         for ch in texto:
             print(dicionario.get(ch))
-            data.append(dicionario.get(ch))
+            data.append(dicionario.get(ch))#data contém código compostos de 0's e 1's
+            print(dicionario.get(ch)) #imprime o códido de Huffman
+        return data
 
 
     def decodificarTexto(self, data):
-        aux = self.__raiz
-        for ch in 
+        atual = self.__raiz
+        for ch in data:
+            if ch is '0': #vou pra esquerda?
+                atual = atual.getEsquerda();
+            else:
+                atual = atual.getDireita()
+            if atual.ehFolha():
+                print(atual.getSimbolo())
+                atual = self.__raiz
+
+    def inOrder(self,raiz):
+        if raiz is not None:
+            inOrder(raiz.getEsquerda())
+            if raiz.ehFolha(): # apenas as folhras contém simbolos válidos!
+                print(raiz)
+            inOrder(raiz.getDireita())
+
+    def imprimirDicionario(self):
+        dicionario = self.criarDicionario()
+        print(dicionario)

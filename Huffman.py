@@ -5,14 +5,14 @@ class Huffman:
     def contarFrequencias(self,texto):
         dicionario = {}
         Queue = []
-        for ch in txt:
+        for ch in texto:
             if ch not in dicionario: # se a chave 'ch' não esta no dicionario
                 dicionario[ch] = Node(ch)
                 Queue.append(dicionario[ch])
                 dicionario[ch].incrementar()
             else:
                 dicionario[ch].incrementar()
-
+       
         return Queue
 
     def criarArvore(self,Queue):
@@ -29,36 +29,38 @@ class Huffman:
     def criarDicionario(self):
         dicionario = {}
         path = ""
-        raiz.preencherMapa(dicionario, path )
+        self.__raiz.preencherDicionario(dicionario, path )
         return dicionario
 
     def codificarTexto(self,texto):
         self.__raiz = self.criarArvore(self.contarFrequencias(texto))
         dicionario = self.criarDicionario()
-
-        data = []
+        data = ""
         for ch in texto:
-            print(dicionario.get(ch))
-            data.append(dicionario.get(ch))#data contém código compostos de 0's e 1's
-            print(dicionario.get(ch)) #imprime o códido de Huffman
+            #print(dicionario.get(ch))
+            data = data + dicionario.get(ch) #data contém código compostos de 0's e 1's
+
         return data
 
 
     def decodificarTexto(self, data):
+        texto = ""
         atual = self.__raiz
         for ch in data:
             if ch is '0': #vou pra esquerda?
                 atual = atual.getEsquerda();
             else:
-                atual = atual.getDireita()
+                atual = atual.getDireita() #vou pra direita!
             if atual.ehFolha():
-                print(atual.getSimbolo())
+                texto = texto + atual.getSimbolo()
                 atual = self.__raiz
+        return texto
+        
 
     def inOrder(self,raiz):
         if raiz is not None:
             inOrder(raiz.getEsquerda())
-            if raiz.ehFolha(): # apenas as folhras contém simbolos válidos!
+            if raiz.ehFolha(): # apenas as folhas contém simbolos válidos!
                 print(raiz)
             inOrder(raiz.getDireita())
 

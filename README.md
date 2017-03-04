@@ -1,2 +1,3 @@
-# Huffman-Python
-Algoritmo de Huffman implementado em Python
+# Huffman Python
+* Algoritmo de Huffman implementado em Python
+![GitHub Logo](/Huffman.png)

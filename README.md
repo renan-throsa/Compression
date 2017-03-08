@@ -1,3 +1,3 @@
 # Huffman Python
-* Algoritmo de Huffman implementado em  :snake:Python
+* Algoritmo de Huffman implementado em Python
 ![GitHub Logo](/Huffman.png)

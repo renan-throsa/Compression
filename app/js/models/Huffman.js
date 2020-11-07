@@ -1,16 +1,16 @@
-class Huffmen {
+class Huffman {
     countUpFrequencies(text) {
-        let map = new Map();
+        let dict = {};
         let queue = Array();
         for (let i = 0; i < text.length; i++) {
             let ch = text[i];
-            if (!map.has(ch)) {
-                map.set(ch, new Vertice(ch));
-                queue.push(map.get(ch));
-                map.get(ch).increment();
+            if (!dict[ch]) {
+                dict[ch] = new Vertice(ch);
+                queue.push(dict[ch]);
+                dict[ch].increment();
             }
             else {
-                map.get(ch).increment();
+                dict[ch].increment();
             }
         }
         return queue.sort((x, y) => x.frequency() - y.frequency()).reverse();
@@ -30,21 +30,37 @@ class Huffmen {
         }
     }
     buildMap() {
-        let map = new Map();
+        let dict = {};
         let path = '';
-        this._root.addToMap(map, path);
-        return map;
+        this._root.addToMap(dict, path);
+        return dict;
     }
     encode(text) {
         this._root = this.buildTree(this.countUpFrequencies(text));
-        let map = this.buildMap();
+        let dict = this.buildMap();
         let data = '';
         for (let index = 0; index < text.length; index++) {
             let ch = text[index];
-            data = data + map.get(ch);
+            data = data + dict[ch];
         }
         return data;
     }
-    decode(text) {
+    decode(data) {
+        let text = '';
+        let current = this._root;
+        for (let index = 0; index < data.length; index++) {
+            let ch = data[index];
+            if (ch === '0') {
+                current = current.left();
+            }
+            else {
+                current = current.right();
+            }
+            if (current.isLeaf()) {
+                text = text + current.symbol();
+                current = this._root;
+            }
+        }
+        return text;
     }
 }

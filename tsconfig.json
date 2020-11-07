@@ -6,7 +6,7 @@
         "strictNullChecks": false,
         "experimentalDecorators": true,
         "module": "system",
-        "target": "es6",
+        "target": "es2017",
         "outDir": "app/js"
     },
     "include": [

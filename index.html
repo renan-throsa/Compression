@@ -15,21 +15,18 @@
     <main>
         <div class="col-sm-12">
             <h1>Huffman Algorithm</h1>
-            <form class="form" onsubmit="controller.encode(event)">
 
-                <textarea id="text" rows="13" id="mensagem" placeholder="Digite algo...">
-Three Rings for the Elven-kings under the sky,
-Seven for the Dwarf-lords in their halls of stone,
-Nine for Mortal Men, doomed to die,
-One for the Dark Lord on his dark throne
-In the Land of Mordor where the Shadows lie.
-One Ring to rule them all, One Ring to find them,
-One Ring to bring them all and in the darkness bind them.
-In the Land of Mordor where the Shadows lie.
+            <textarea id="text" rows="13" id="mensagem" placeholder="Digite algo...">
+Three Rings for the Elven-kings under the sky. Seven for the Dwarf-lords in their halls of stone.
+Nine for Mortal Men, doomed to die. One for the Dark Lord on his dark throne. In the Land of Mordor where the Shadows lie. 
+One Ring to rule them all. One Ring to find them. One Ring to bring them all and in the darkness bind them. In the Land of Mordor where the Shadows lie.
                 </textarea>
 
-                <button class="btn btn-primary" type="submit">Encode</button>
-            </form>
+            <button onclick="controller.encode()" class="btn btn-primary" type="button">Encode</button>
+            <button onclick="controller.decode()" class="btn btn-primary" type="button">
+                Decode
+            </button>
+
         </div>
         <div class="text-center">
             <button id="stats-button" class="btn btn-primary text-center" type="button">
@@ -44,13 +41,17 @@ In the Land of Mordor where the Shadows lie.
         <br>
         <br>
 
-        <div id="statiticsView"></div>
+        <div id="mapView"></div>
 
     </main>
 
-
+    <script src="./app/js/models/Mensage.js"></script>
     <script src="./app/js/models/Vertice.js"></script>
     <script src="./app/js/models/Huffman.js"></script>
+
+    <script src="./app/js/viwes/View.js"></script>
+    <script src="./app/js/viwes/MensageView.js"></script>
+    <script src="./app/js/viwes/MapView.js"></script>
     <script src="./app/js/controller/HuffmanController.js"></script>
 
     <script>

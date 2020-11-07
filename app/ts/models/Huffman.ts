@@ -1,19 +1,19 @@
-class Huffmen {
+class Huffman {
 
     private _root: Vertice;
 
     private countUpFrequencies(text: string): Vertice[] {
-        let map = new Map<string, Vertice>();
+        let dict = {};
         let queue = Array<Vertice>();
 
         for (let i = 0; i < text.length; i++) {
             let ch = text[i];
-            if (!map.has(ch)) {
-                map.set(ch, new Vertice(ch))
-                queue.push(map.get(ch));
-                map.get(ch).increment();
+            if (!dict[ch]) {
+                dict[ch] = new Vertice(ch)
+                queue.push(dict[ch]);
+                dict[ch].increment();
             } else {
-                map.get(ch).increment();
+                dict[ch].increment();
             }
 
         }
@@ -35,26 +35,40 @@ class Huffmen {
         }
     }
 
-    private buildMap(): Map<string, string> {
-        let map = new Map<string, string>();
+    public buildMap(): Object {
+        let dict = {};
         let path = ''
-        this._root.addToMap(map, path)
-        return map;
+        this._root.addToMap(dict, path)
+        return dict;
     }
 
     public encode(text: string): string {
-
         this._root = this.buildTree(this.countUpFrequencies(text))
-        let map = this.buildMap();
+        let dict = this.buildMap();
         let data = ''
         for (let index = 0; index < text.length; index++) {
-            let ch = text[index];
-            data = data + map.get(ch);
+            let ch = text[index];            
+            data = data + dict[ch];
         }
         return data;
     }
 
-    private decode(text: string) {
+    public decode(data: string) {
+        let text = ''
+        let current = this._root;
+        for (let index = 0; index < data.length; index++) {
+            let ch = data[index];
+            if (ch === '0') {
+                current = current.left();
+            } else {
+                current = current.right();
+            }
 
+            if (current.isLeaf()) {                
+                text = text + current.symbol();
+                current = this._root;
+            }
+        }
+        return text;
     }
 }

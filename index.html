@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Huffman</title>
+    <link rel="stylesheet" href="/app/css/bootstrap.css">
+    <link rel="stylesheet" href="/app/css/index.css">
+</head>
+
+<body class="container">
+
+    <div id="mensageView"></div>
+
+    <main>
+        <div class="col-sm-12">
+            <h1>Huffman Algorithm</h1>
+            <form class="form" onsubmit="controller.encode(event)">
+
+                <textarea id="text" rows="13" id="mensagem" placeholder="Digite algo...">
+Three Rings for the Elven-kings under the sky,
+Seven for the Dwarf-lords in their halls of stone,
+Nine for Mortal Men, doomed to die,
+One for the Dark Lord on his dark throne
+In the Land of Mordor where the Shadows lie.
+One Ring to rule them all, One Ring to find them,
+One Ring to bring them all and in the darkness bind them.
+In the Land of Mordor where the Shadows lie.
+                </textarea>
+
+                <button class="btn btn-primary" type="submit">Encode</button>
+            </form>
+        </div>
+        <div class="text-center">
+            <button id="stats-button" class="btn btn-primary text-center" type="button">
+                Stats
+            </button>
+            <button id="clean-button" onclick="controller.clear()" class="btn btn-primary text-center" type="button">
+                Clear
+            </button>
+
+        </div>
+
+        <br>
+        <br>
+
+        <div id="statiticsView"></div>
+
+    </main>
+
+
+    <script src="./app/js/models/Vertice.js"></script>
+    <script src="./app/js/models/Huffman.js"></script>
+    <script src="./app/js/controller/HuffmanController.js"></script>
+
+    <script>
+        let controller = new Huffmancontroller();        
+    </script>
+</body>
+
+</html>

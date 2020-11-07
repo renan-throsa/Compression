@@ -1,0 +1,16 @@
+{
+  "name": "huffman",
+  "version": "1.0.0",
+  "description": "A web app meant to show how Huffmen-compression algorithem works.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "start": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.0.5"
+  }
+}

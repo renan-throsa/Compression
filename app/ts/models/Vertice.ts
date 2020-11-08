@@ -16,7 +16,12 @@ class Vertice {
     }
 
     public frequency(): number {
-        return this._counter;        
+        if (this.isLeaf()) {
+            return this._counter;
+        } else {
+            return this._left.frequency() + this._right.frequency();
+        }
+
     }
 
     public character(): string {
@@ -34,7 +39,6 @@ class Vertice {
     public increment(): void {
         this._counter += 1;
     }
-
 
     public addToMap(dict: {}, path: string = ''): void {
         if (this.isLeaf()) {

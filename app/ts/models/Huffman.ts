@@ -26,20 +26,31 @@ class Huffman {
             if (queue.length === 0) {
                 return parent;
             } else {
-                queue.push(parent)
+                queue.push(parent);
                 queue = queue.sort((x, y) => x.frequency() - y.frequency()).reverse();
             }
         }
     }
 
+    inOrder(root: Vertice) {
+        if (root !== null) {
+            this.inOrder(root.left())
+            if (root.isLeaf()) {
+                console.log(root.character(), root.frequency());
+            }
+            this.inOrder(root.right());
+        }
+
+    }
+
     public buildMap(): {} {
         let dict = {};
-        this._root.addToMap(dict)
+        this._root.addToMap(dict);
         return dict;
     }
 
     public encode(text: string): string {
-        this._root = this.buildTree(this.countUpFrequencies(text))
+        this._root = this.buildTree(this.countUpFrequencies(text));
         let dict = this.buildMap();
         let data = ''
         for (let index = 0; index < text.length; index++) {
@@ -50,7 +61,6 @@ class Huffman {
     }
 
     public decode(data: string) {
-        console.log(this._root);
         let text = ''
         let current = this._root;
         for (let index = 0; index < data.length; index++) {
@@ -60,7 +70,6 @@ class Huffman {
             } else {
                 current = current.right();
             }
-
             if (current.isLeaf()) {
                 text = text + current.character();
                 current = this._root;

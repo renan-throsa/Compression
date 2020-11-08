@@ -26,6 +26,15 @@ class Huffman {
             }
         }
     }
+    inOrder(root) {
+        if (root !== null) {
+            this.inOrder(root.left());
+            if (root.isLeaf()) {
+                console.log(root.character(), root.frequency());
+            }
+            this.inOrder(root.right());
+        }
+    }
     buildMap() {
         let dict = {};
         this._root.addToMap(dict);
@@ -42,7 +51,6 @@ class Huffman {
         return data;
     }
     decode(data) {
-        console.log(this._root);
         let text = '';
         let current = this._root;
         for (let index = 0; index < data.length; index++) {

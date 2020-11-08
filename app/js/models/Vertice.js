@@ -9,7 +9,12 @@ class Vertice {
         return this._left == null && this._right == null;
     }
     frequency() {
-        return this._counter;
+        if (this.isLeaf()) {
+            return this._counter;
+        }
+        else {
+            return this._left.frequency() + this._right.frequency();
+        }
     }
     character() {
         return this._character;

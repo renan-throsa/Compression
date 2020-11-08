@@ -4,24 +4,21 @@ class Huffman {
 
     private countUpFrequencies(text: string): Vertice[] {
         let dict = {};
-        let queue = Array<Vertice>();
+        let queue = [];
 
         for (let i = 0; i < text.length; i++) {
             let ch = text[i];
             if (!dict[ch]) {
                 dict[ch] = new Vertice(ch)
                 queue.push(dict[ch]);
-                dict[ch].increment();
-            } else {
-                dict[ch].increment();
             }
+            dict[ch].increment();
 
         }
-
         return queue.sort((x, y) => x.frequency() - y.frequency()).reverse();
     }
 
-    private buildTree(queue: Vertice[]) {
+    private buildTree(queue: Vertice[]): Vertice {
         while (true) {
             let left = queue.pop();
             let rigth = queue.pop();
@@ -35,10 +32,9 @@ class Huffman {
         }
     }
 
-    public buildMap(): Object {
+    public buildMap(): {} {
         let dict = {};
-        let path = ''
-        this._root.addToMap(dict, path)
+        this._root.addToMap(dict)
         return dict;
     }
 
@@ -47,13 +43,14 @@ class Huffman {
         let dict = this.buildMap();
         let data = ''
         for (let index = 0; index < text.length; index++) {
-            let ch = text[index];            
+            let ch = text[index];
             data = data + dict[ch];
         }
         return data;
     }
 
     public decode(data: string) {
+        console.log(this._root);
         let text = ''
         let current = this._root;
         for (let index = 0; index < data.length; index++) {
@@ -64,8 +61,8 @@ class Huffman {
                 current = current.right();
             }
 
-            if (current.isLeaf()) {                
-                text = text + current.symbol();
+            if (current.isLeaf()) {
+                text = text + current.character();
                 current = this._root;
             }
         }

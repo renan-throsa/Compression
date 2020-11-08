@@ -1,17 +1,14 @@
 class Huffman {
     countUpFrequencies(text) {
         let dict = {};
-        let queue = Array();
+        let queue = [];
         for (let i = 0; i < text.length; i++) {
             let ch = text[i];
             if (!dict[ch]) {
                 dict[ch] = new Vertice(ch);
                 queue.push(dict[ch]);
-                dict[ch].increment();
             }
-            else {
-                dict[ch].increment();
-            }
+            dict[ch].increment();
         }
         return queue.sort((x, y) => x.frequency() - y.frequency()).reverse();
     }
@@ -31,8 +28,7 @@ class Huffman {
     }
     buildMap() {
         let dict = {};
-        let path = '';
-        this._root.addToMap(dict, path);
+        this._root.addToMap(dict);
         return dict;
     }
     encode(text) {
@@ -46,6 +42,7 @@ class Huffman {
         return data;
     }
     decode(data) {
+        console.log(this._root);
         let text = '';
         let current = this._root;
         for (let index = 0; index < data.length; index++) {
@@ -57,7 +54,7 @@ class Huffman {
                 current = current.right();
             }
             if (current.isLeaf()) {
-                text = text + current.symbol();
+                text = text + current.character();
                 current = this._root;
             }
         }

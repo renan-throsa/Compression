@@ -11,7 +11,7 @@ class Huffmancontroller {
         this._mapView.update({});
     }
 
-    encode() {
+    encode() {        
         this._textField.value = this._huffman.encode(this._textField.value);
         this._mapView.update(this._huffman.buildMap());
     }

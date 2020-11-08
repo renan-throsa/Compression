@@ -1,3 +1,3 @@
-# Huffman Python
-* Algoritmo de Huffman implementado em Python
-![GitHub Logo](/Huffman.png)
+# Huffman Algorithm
+* Algoritmo de Huffman implementado em Python e Typescript(bugado).
+
